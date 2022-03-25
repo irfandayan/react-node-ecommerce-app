@@ -1,28 +1,41 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { sliderItems } from "../data.js";
+
+// Material UI icons
 import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 
 const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+    }
+  };
+
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlinedIcon />
       </Arrow>
       <Wrapper>
-        <Slide>
-          <ImgContainer>
-            <Image src="/images/slide-img-01.jpeg" />
-          </ImgContainer>
-          <InfoContainer>
-            <Title> SUMMER SAL</Title>
-            <Desc>
-              DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS
-            </Desc>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Button>SHOP NOW</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
-      <Arrow direction="right">
+      <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlinedIcon />
       </Arrow>
     </Container>
@@ -34,6 +47,7 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   position: relative;
+  overflow: hidden;
 `;
 
 const Arrow = styled.div`
@@ -52,10 +66,13 @@ const Arrow = styled.div`
   margin: auto;
   left: ${(props) => props.direction === "left" && "10px"};
   right: ${(props) => props.direction === "right" && "10px"};
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
+  display: flex;
+  transform: translateX(0vw);
 `;
 
 const Slide = styled.div`
@@ -63,6 +80,7 @@ const Slide = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
+  background-color: #${(props) => props.bg};
 `;
 
 const ImgContainer = styled.div`
@@ -72,6 +90,7 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   height: 80%;
+  width: 100%;
 `;
 
 const InfoContainer = styled.div`
@@ -79,8 +98,20 @@ const InfoContainer = styled.div`
   padding: 50px;
 `;
 
-const Title = styled.h1``;
-const Desc = styled.p``;
-const Button = styled.button``;
+const Title = styled.h1`
+  font-size: 70px;
+`;
+const Desc = styled.p`
+  margin: 50px 0;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 3px;
+`;
+const Button = styled.button`
+  padding: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
+`;
 
 export default Slider;
