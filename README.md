@@ -1,4 +1,4 @@
-<h3>React E-Commercer APP Design</h3>
+<h3>React E-Commerce App Design</h3>
 <h5>Built in:</h5>
 <ul>
 <li>React.js</li>
