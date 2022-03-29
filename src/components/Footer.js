@@ -3,6 +3,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import PinterestIcon from "@mui/icons-material/Pinterest";
+import RoomIcon from "@mui/icons-material/Room";
+import PhoneIcon from "@mui/icons-material/Phone";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 const Footer = () => {
   return (
@@ -46,17 +49,17 @@ const Footer = () => {
       </Center>
       <Right>
         <Title>Contact</Title>
-        {/* <ContactItem>
-          <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South
+        <ContactItem>
+          <RoomIcon style={{ marginRight: "10px" }} /> 622 Dixie Path , South
           Tobinchester 98336
         </ContactItem>
         <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+          <PhoneIcon style={{ marginRight: "10px" }} /> +1 234 56 78
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
+          <MailOutlineIcon style={{ marginRight: "10px" }} /> contact@lama.dev
         </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" /> */}
+        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
   );
@@ -64,7 +67,9 @@ const Footer = () => {
 
 const Container = styled.div`
   display: flex;
+  padding: 10px 20px;
 `;
+
 const Left = styled.div`
   flex: 1;
   display: flex;
@@ -114,6 +119,17 @@ const ListItem = styled.li`
 
 const Right = styled.div`
   flex: 1;
+  padding: 20px;
+`;
+
+const ContactItem = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+`;
+
+const Payment = styled.img`
+  width: 50%;
 `;
 
 export default Footer;
